@@ -31,8 +31,10 @@ This repository contains a Java project for testing APIs using RestAssured. It i
     ```
 
 4. **Access API Documentation**:
+    ```bash
     Once Docker Compose is running, the API documentation is accessible at:
     [http://localhost:3001/apidoc/index.html](http://localhost:3001/apidoc/index.html)
+    ```
 
 5. **Run Tests**: 
     ```bash
