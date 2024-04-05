@@ -1,6 +1,6 @@
 # Java RestAssured Project
 
-This project is a Java-based API testing framework utilizing RestAssured library.
+This project is a Java-based API testing framework utilizing the RestAssured library.
 
 ## Overview
 
@@ -8,8 +8,9 @@ This repository contains a Java project for testing APIs using RestAssured. It i
 
 ## Prerequisites
 
-- JDK (Java Development Kit) installed on your machine.
+- JDK 17 (Java Development Kit) installed on your machine.
 - Maven for managing project dependencies.
+- Docker installed on your machine.
 
 ## Setup
 
@@ -24,7 +25,16 @@ This repository contains a Java project for testing APIs using RestAssured. It i
     mvn clean install
     ```
 
-3. **Run Tests**: 
+3. **Run Docker Compose**:
+    ```bash
+    docker-compose -f docker-compose-restfulbooker.yml up -d
+    ```
+
+4. **Access API Documentation**:
+    Once Docker Compose is running, the API documentation is accessible at:
+    [http://localhost:3001/apidoc/index.html](http://localhost:3001/apidoc/index.html)
+
+5. **Run Tests**: 
     ```bash
     mvn test
     ```
@@ -33,18 +43,22 @@ This repository contains a Java project for testing APIs using RestAssured. It i
 
 - `src/main/test/java`: Contains test cases.
 - `src/main/testdata`: Contains test data or configurations.
+- `src/test/java/interfaces`: Contains IServiceEndpoints file with endpoint definitions.
 - `pom.xml`: Maven configuration file.
-- `docker-compose-restfulbooker.yml`: Contain docker compose
+- `docker-compose-restfulbooker.yml`: Contains docker compose configuration.
+- `src/test/java/test`: Contains test cases.
+- `src/test/java/testdata`: Contains test data.
 
 ## Usage
 
-1. Add your test cases under `src/test/java`.
+1. Add your test cases under `src/test/java/test`.
 2. Execute tests using Maven or your preferred IDE.
 
 ## Dependencies
 
 - RestAssured: For API testing.
 - JUnit: For writing and executing tests.
+- Lombok: For reducing boilerplate code.
 - Other dependencies are managed through Maven.
 
 ## Contributing

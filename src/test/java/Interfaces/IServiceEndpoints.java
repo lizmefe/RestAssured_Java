@@ -1,4 +1,4 @@
-package testdata.Interfaces;
+package Interfaces;
 
 public interface IServiceEndpoints {
     String AUTH = "/auth";

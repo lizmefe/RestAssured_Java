@@ -2,12 +2,12 @@ package test;
 
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+import Interfaces.IServiceEndpoints;
 import io.restassured.http.ContentType;
 import testdata.AuthData;
 import testdata.BookingData;
 import testdata.PartialUpdateBookingData;
 import testdata.TestDataBuilder;
-import testdata.Interfaces.IServiceEndpoints;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
