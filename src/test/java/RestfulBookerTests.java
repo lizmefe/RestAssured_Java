@@ -8,19 +8,40 @@ import io.restassured.http.ContentType;
 
 import static io.restassured.RestAssured.given;
 
-public class RestfulBookerTests {
+public class RestfulBookerTests{
     private record UserData(String firstname,
-                            String lastname,
-                            int totalprice,
-                            boolean depositpaid,
-                            BookingDates bookingdates,
-                            String additionalneeds) {
+            String lastname,
+            int totalprice,
+            boolean depositpaid,
+            BookingDates bookingdates,
+            String additionalneeds) {
     }
 
     private record BookingDates(String checkin, String checkout) {
     }
 
     private record AuthData(String username, String password) {
+    }
+
+    private record PartialUpdateData(int totalprice, String additionalneeds) {
+    }
+
+    @Test
+    public String authToken() {
+
+        final AuthData authData = new AuthData("admin", "password123");
+
+        return given().body(authData)
+                .header("Content-Type", ContentType.JSON)
+                .when()
+                .log().all()
+                .post("http://localhost:3001/auth")
+                .then()
+                .log().all()
+                .statusCode(200)
+                .body("token", is(notNullValue()))
+                .extract().path("token").toString();
+
     }
 
     @Test
@@ -56,9 +77,9 @@ public class RestfulBookerTests {
     }
 
     @Test
-    public void TestUpdateBooking()
-    {
-        final UserData updateUserData = new UserData("Joseph", "DaFoe", 141, true, new BookingDates("2022-01-01", "2022-01-10"), "Dinner");
+    public void TestUpdateBooking() {
+        final UserData updateUserData = new UserData("Joseph", "DaFoe", 141, true,
+                new BookingDates("2022-01-01", "2022-01-10"), "Dinner");
 
         given().header("Content-Type", "application/json")
                 .header("Accept", "application/json")
@@ -74,20 +95,43 @@ public class RestfulBookerTests {
     }
 
     @Test
-    public String authToken() {
+    public void testUpdatePartialBooking() {
+        final PartialUpdateData partialUpdateData = new PartialUpdateData(951, "Lunch");
 
-        final AuthData authData = new AuthData("admin", "password123");
+        given().header("Content-Type", "application/json")
+                .header("Accept", "application/json")
+                .header("Cookie", "token=" + authToken())
+                .body(partialUpdateData)
+                .when()
+                .log().all()
+                .patch("http://localhost:3001/booking/1")
+                .then()
+                .log().all()
+                .statusCode(200)
+                .body("totalprice", equalTo(951))
+                .body("additionalneeds", equalTo(partialUpdateData.additionalneeds.toString()));
+    }
 
-        return given().body(authData)
-        .header("Content-Type", ContentType.JSON)
-        .when()
-        .log().all()
-        .post("http://localhost:3001/auth")
-        .then()
-        .log().all()
-        .statusCode(200)
-        .body("token", is(notNullValue()))
-        .extract().path("token").toString();
+    @Test
+    public void testDeleteBooking() {
+        given().header("Content-Type", ContentType.JSON)
+                .header("Cookie", "token=" + authToken())
+                .when()
+                .log().all()
+                .delete("http://localhost:3001/booking/1")
+                .then()
+                .log().all()
+                .statusCode(201);
+    }
 
+    @Test
+    public void testDeletedBooking() {
+        given().header("Accept", "application/json")
+                .when()
+                .log().all()
+                .get("http://localhost:3001/booking/1")
+                .then()
+                .log().all()
+                .statusCode(404);
     }
 }

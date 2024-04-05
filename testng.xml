@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite">
+    <test verbose="2" preserve-order="true" name="Test">
+        <classes>
+            <class name="RestfulBookerTests">
+                <methods>
+                    <include name="authToken"/>
+                    <include name="testCreateBooking"/>
+                    <include name="testGetBooking"/>
+                    <include name="TestUpdateBooking"/>
+                    <include name="testUpdatePartialBooking"/>
+                    <include name="testDeleteBooking"/>
+                    <include name="testDeletedBooking"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
