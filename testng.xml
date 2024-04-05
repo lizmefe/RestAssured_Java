@@ -5,7 +5,7 @@
         <classes>
             <class name="RestfulBookerTests">
                 <methods>
-                    <include name="authToken"/>
+                    <include name="testTokenGeneration"/>
                     <include name="testCreateBooking"/>
                     <include name="testGetBooking"/>
                     <include name="TestUpdateBooking"/>

@@ -19,6 +19,7 @@
         <jackson-databind.version>2.15.2</jackson-databind.version>
         <data-faker.version>2.0.1</data-faker.version>
         <maven-compiler-plugin.version>3.11.0</maven-compiler-plugin.version>
+        <lombok.version>1.18.28</lombok.version>
         <java-release.version>17</java-release.version>
         <suite-xml>testng.xml</suite-xml>
     </properties>
@@ -34,6 +35,12 @@
             <artifactId>rest-assured</artifactId>
             <version>${rest-assured.version}</version>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
