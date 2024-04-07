@@ -6,6 +6,6 @@ import lombok.Getter;
 @Getter
 @Builder
 public class AuthData {
-    private final String username;
-    private final String password;
+    private String username;
+    private String password;
 }

@@ -6,6 +6,6 @@ import lombok.Getter;
 @Getter
 @Builder
 public class BookingDates {
-    private final String checkin;
-    private final String checkout;
+    private String checkin;
+    private String checkout;
 }
