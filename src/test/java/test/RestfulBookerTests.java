@@ -1,18 +1,17 @@
 package test;
 
+import static io.restassured.RestAssured.*;
+import static org.hamcrest.Matchers.*;
+
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+
 import Interfaces.IServiceEndpoints;
 import io.restassured.http.ContentType;
 import testdata.AuthData;
 import testdata.BookingData;
 import testdata.PartialUpdateBookingData;
 import testdata.TestDataBuilder;
-
-import static io.restassured.RestAssured.given;
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.notNullValue;
 
 public class RestfulBookerTests extends BaseTest {
 

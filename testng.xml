@@ -3,15 +3,14 @@
 <suite name="All Test Suite">
     <test verbose="2" preserve-order="true" name="Test">
         <classes>
-            <class name="RestfulBookerTests">
+            <class name="test.RestfulBookerTests">
                 <methods>
-                    <include name="testTokenGeneration"/>
-                    <include name="testCreateBooking"/>
-                    <include name="testGetBooking"/>
-                    <include name="TestUpdateBooking"/>
-                    <include name="testUpdatePartialBooking"/>
-                    <include name="testDeleteBooking"/>
-                    <include name="testDeletedBooking"/>
+                    <include name="createBookingTest"/>
+                    <include name="getBookingTest"/>
+                    <include name="updateBookingTest"/>
+                    <include name="updatePartialBookingTest"/>
+                    <include name="deleteBookingTest"/>
+                    <include name="deletedBookingTest"/>
                 </methods>
             </class>
         </classes>
